@@ -2,6 +2,7 @@ import React from 'react';
 import { FlatList, View, Text } from 'react-native';
 import ConferenceCard from './ConferenceCard';
 import conferences from '../data/confbeer.js'
+import Footer from './Footer'
 
 const ConferenceList = () => {
 
@@ -14,6 +15,7 @@ const ConferenceList = () => {
                     <ConferenceCard  {...item} />
                 )}
             />
+            <Footer/>
         </View>
     );
 };

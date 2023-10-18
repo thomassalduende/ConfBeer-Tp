@@ -9,7 +9,7 @@ const FormLogin = () => {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>ConfBeer</Text>
+            <Text style={styles.title}>Bienvenidos a la ConfBeer</Text>
             <View>
                 <TouchableOpacity onPress={googleSingIn} style={styles.google}>
                     <Image
@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
         fontStyle: 'italic',
         marginBottom: 20,
         color: '#FF5733',
+        textAlign: 'center'
     },
     google: {
         flexDirection: 'row',

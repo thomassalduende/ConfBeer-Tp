@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { FontAwesome5, AntDesign } from '@expo/vector-icons';
@@ -11,7 +11,6 @@ import { AuthLogin } from '../context/ContextFirebaseLogin';
 
 const Stack = createStackNavigator();
 
-const sesion = true
 const Home = () => {
 
     const [isMenuOpen, setMenuOpen] = useState(false);
@@ -27,22 +26,24 @@ const Home = () => {
             <Stack.Navigator
                 initialRouteName={user != null ? 'ConferenceList' : 'Login'}
                 screenOptions={{
-                    header: () => (
-
+                    header: () => 
+                       (
                         <View style={styles.header}>
                             <Text style={styles.headerTitle}>ConfBeer</Text>
-                            <TouchableOpacity
-                                style={styles.menuButton}
-                                onPress={toggleMenu}
-                            >
-                                <FontAwesome5 name="bars" size={24} color="white" />
-                            </TouchableOpacity>
-                        </View>
 
+                            { user != null && 
+                                <TouchableOpacity
+                                    style={styles.menuButton}
+                                    onPress={toggleMenu}
+                                >
+                                    <FontAwesome5 name="bars" size={24} color="white" />
+                                </TouchableOpacity>
+                            }
+                        </View>
                     )
                 }}
             >
-                {user != null ? (
+                { user != null ? (
                     <>
                         <Stack.Screen name="ConferenceList" component={ConferenceList} options={{ title: 'Inicio' }} />
                         <Stack.Screen
@@ -63,11 +64,6 @@ const Home = () => {
                         onPress={() => {
                             setMenuOpen(false);
                             navigation.navigate('ConferenceList')
-                            if (user != null) {
-                                navigation.navigate()
-                            } else {
-                                // Navegar a la pantalla de inicio de sesión
-                            }
                         }}
                     >
                         <Text style={styles.menuItemText}>Home</Text>
@@ -118,9 +114,9 @@ const styles = StyleSheet.create({
         right: 0,
         width: 180,
         borderRadius: 5,
-        elevation: 4, // Sombra para Android
-        shadowColor: 'black', // Sombra para iOS
-        shadowOffset: { width: 0, height: 2 }, // Sombra para iOS
+        elevation: 4, 
+        shadowColor: 'black', 
+        shadowOffset: { width: 0, height: 2 }
     },
     menuItem: {
         padding: 10,
@@ -129,7 +125,7 @@ const styles = StyleSheet.create({
     },
     menuItemText: {
         fontSize: 16,
-        color: 'white', // Color del texto del menú
+        color: 'white'
     },
 });
 
